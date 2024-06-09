@@ -12,6 +12,9 @@
         {% if doc.last_modified_at or doc.date %}
           <lastmod>{{ doc.last_modified_at | default: doc.date | date_to_xmlschema }}</lastmod>
         {% endif %}
+        {% if doc.priority %}
+          <priority>{{ doc.priority }}</priority>
+        {% endif %}
       </url>
     {% endfor %}
   {% endfor %}
@@ -22,6 +25,9 @@
       <loc>{{ page.url | replace:'/index.html','/' | absolute_url | xml_escape }}</loc>
       {% if page.last_modified_at %}
         <lastmod>{{ page.last_modified_at | date_to_xmlschema }}</lastmod>
+      {% endif %}
+      {% if page.priority %}
+        <priority>{{ page.priority }}</priority>
       {% endif %}
     </url>
   {% endfor %}
